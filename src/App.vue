@@ -1,17 +1,32 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  #app
+      AddTask(v-if = "isVisible == true" @setIsVisible="setIsVisible")
+      Menu
+      .view-content
+        <router-view></router-view>
 </template>
+
+
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import Menu from './components/Menu.vue'
+import AddTask from './components/AddTask.vue'
 export default {
   name: 'App',
+  data: () => ({
+    isVisible: false,
+  }),
   components: {
-    HelloWorld
+    HelloWorld,
+    Menu,
+    AddTask,
+  },
+  methods: {
+    setIsVisible(value){
+      this.isVisible = value
+      alert(this.isVisible)
+    }
   }
 }
 </script>
